@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    initialization-mode: always
+    data: classpath:/data.sql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${PROD_DB_HOST}/${PROD_DB_NAME}?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false
+    username: ${PROD_DB_USER}
+    password: ${PROD_DB_PASS}
+
+  jpa:
+    open-in-view: true
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.MySQL5Dialect
