@@ -1,11 +1,10 @@
 package ar.com.manflack.expensemanager.repository;
 
-import ar.com.manflack.expensemanager.app.model.User;
+import ar.com.manflack.expensemanager.app.model.Card;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>
+public interface CardRepository extends JpaRepository<Card, Long>
 {
-    User findByEmail(String email);
 }

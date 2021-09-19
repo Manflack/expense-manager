@@ -1,16 +1,15 @@
 package ar.com.manflack.expensemanager.app.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 import javax.persistence.*;
 
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "Purchases")
@@ -25,26 +24,57 @@ public class Purchase
 
     private String description;
 
-    @Setter(AccessLevel.NONE)
-    @OneToMany
-    private List<Purchase> purchasesDetails;
-
     @ManyToOne
     @JoinColumn(name = "user")
     private User user;
 
-    public Purchase(Integer price, LocalDateTime purchaseDate, String description, List<Purchase> purchasesDetails)
+    public static PurchaseBuilder builder()
     {
-        this.price = price;
-        this.purchaseDate = purchaseDate;
-        this.description = description;
-        this.purchasesDetails = purchasesDetails;
+        return new PurchaseBuilder();
     }
 
-    public Purchase(Integer price, LocalDateTime purchaseDate, String description)
+    public static final class PurchaseBuilder
     {
-        this.price = price;
-        this.purchaseDate = purchaseDate;
-        this.description = description;
+        private Purchase purchase;
+
+        private PurchaseBuilder()
+        {
+            purchase = new Purchase();
+        }
+
+        public PurchaseBuilder id(UUID id)
+        {
+            purchase.setId(id);
+            return this;
+        }
+
+        public PurchaseBuilder price(Integer price)
+        {
+            purchase.setPrice(price);
+            return this;
+        }
+
+        public PurchaseBuilder purchaseDate(LocalDateTime purchaseDate)
+        {
+            purchase.setPurchaseDate(purchaseDate);
+            return this;
+        }
+
+        public PurchaseBuilder description(String description)
+        {
+            purchase.setDescription(description);
+            return this;
+        }
+
+        public PurchaseBuilder user(User user)
+        {
+            purchase.setUser(user);
+            return this;
+        }
+
+        public Purchase build()
+        {
+            return purchase;
+        }
     }
 }

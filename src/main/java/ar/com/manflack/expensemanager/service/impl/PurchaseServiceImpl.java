@@ -3,6 +3,7 @@ package ar.com.manflack.expensemanager.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import ar.com.manflack.expensemanager.app.dto.CardDTO;
 import ar.com.manflack.expensemanager.app.dto.PurchaseDTO;
 import ar.com.manflack.expensemanager.app.factory.PurchaseFactory;
 import ar.com.manflack.expensemanager.app.model.Purchase;
@@ -38,7 +39,8 @@ public class PurchaseServiceImpl implements PurchaseService
                 .collect(Collectors.toList());
     }
 
-    public PurchaseDTO createPurchase(PurchaseDTO purchaseDTO) throws InvalidPurchaseException
+    @Override
+    public PurchaseDTO makePurchase(PurchaseDTO purchaseDTO, CardDTO cardDTO) throws InvalidPurchaseException
     {
         Purchase persistentPurchase = PurchaseFactory.DTOToEntity(purchaseDTO);
 

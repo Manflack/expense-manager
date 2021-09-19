@@ -1,8 +1,8 @@
 package ar.com.manflack.expensemanager.app.model;
 
-import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,10 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "Users")
 public class User
 {
     @Id
-    private UUID id;
+    private Long id;
 
     private String username;
 
